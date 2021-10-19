@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+import React, { Component, useState } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
 import './App.css';
+import { routes } from './routes';
+import { getToken } from './utilities/getToken';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App =()=> {
+  const [state,setState] = useState({isLoggedIn:false})
+    return (
+      <Router>
+        <div className="App">
+          <ul className="App-header">
+            {
+              // (state.isLoggedIn?routes.guest:routes.guest.filter(r=>r.title === 'login')).map(r => (
+              //   <li>
+              //     {
+                   
+              //       <Link key={r.key} to={r.path}>{r.title.toUpperCase()}</Link>
+                    
+              //     }
+                  
+              //   </li>
+              // ))
+            }
+          </ul>
+
+          <Switch>
+            {
+
+              routes.guest.map(r => (
+                <Route key={r.key} exact={r.exact} path={r.path} component={(props)=><r.component {...props} />}></Route>
+              ))
+            }
+            <Route>
+              <Redirect to='/login' />
+            </Route>
+          </Switch>
+
+        </div>
+      </Router>
+    );
 }
 
 export default App;
+
