@@ -1,7 +1,9 @@
-import About from "../component/about";
-import Contact from "../component/contact";
-import Home from "../component/home";
-import Login from "../component/login";
+import React from 'react';
+
+const About = React.lazy(()=>import("../component/about"));
+const Contact = React.lazy(()=>import("../component/contact"));
+const Home = React.lazy(()=>import("../component/home"));
+const Login = React.lazy(()=>import("../component/login"));
 
 export const routes = {
     guest:[

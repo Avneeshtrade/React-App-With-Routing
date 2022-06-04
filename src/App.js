@@ -1,13 +1,12 @@
-import React, { Component, useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import { routes } from './routes';
-import { getToken } from './utilities/getToken';
 
 const App =()=> {
   const [state,setState] = useState({isLoggedIn:false})
     return (
-      <Router>
+                <Router>
         <div className="App">
           <ul className="App-header">
             {
@@ -23,7 +22,7 @@ const App =()=> {
               // ))
             }
           </ul>
-
+          <React.Suspense fallback={<h3>Loading.......</h3>}>
           <Switch>
             {
 
@@ -31,13 +30,15 @@ const App =()=> {
                 <Route key={r.key} exact={r.exact} path={r.path} component={(props)=><r.component {...props} />}></Route>
               ))
             }
-            <Route>
+            <Route path="*">
               <Redirect to='/login' />
             </Route>
           </Switch>
 
+          </React.Suspense>
         </div>
       </Router>
+
     );
 }
 

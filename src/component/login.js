@@ -10,11 +10,11 @@ function Login ({isLoggedIn,setIsLoggedIn}) {
         isLoggedIn:isLoggedIn
     }
     const history = useHistory()
-    useEffect(()=>{
-        if(getToken()){
-            history.push('/home')
-        }
-    })
+    // useEffect(()=>{
+    //     if(getToken()){
+    //         history.push('/home')
+    //     }
+    // })
     const [state,setState] =  useState(initialState)
     const changeHandler = (e) =>{
             setState(s=>(
@@ -67,6 +67,9 @@ function Login ({isLoggedIn,setIsLoggedIn}) {
         <hr /><label>Username</label><input type="text" name="username" placeholder="username" value={state.username} onChange={changeHandler}/>
         <hr /><label>Password</label><input type="password" name="password" placeholder="password" value={state.password} onChange={changeHandler}/>
         <hr /><button onClick={submitHandler}>Login</button>
+        <button onClick={()=>{
+            history.push('/home')
+        }}>Go to Home Page</button>
 	</div>
 }
 export default Login;

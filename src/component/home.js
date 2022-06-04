@@ -1,19 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router';
-import { clearToken } from '../utilities/clearToken';
-import { getToken } from '../utilities/getToken';
+import UploadArea from './UploadArea';
 
-function Home({setState}) {
+function Home() {
     const history = useHistory()
-    useEffect(()=>{
-        if(!getToken()){
-            history.push('/login')
-        }
-        
-    })
     return <div>
         <h1>Welcome to the world of Geeks!</h1>
-        <button onClick={()=>{clearToken(); history.push('/login')}}>Logout</button>
+        <UploadArea />
+        <button onClick={()=>{history.push('/login')}}>Login</button>
     </div>
 }
 
